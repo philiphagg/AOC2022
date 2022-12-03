@@ -8,12 +8,15 @@ public class Day3 {
     private static final int LOWECASE_ASCII = 'a' - 1;
     private static final int UPPERCASE_ASCII = 'A'-1 -26;
     public static void main(String[] args) throws FileNotFoundException {
+        //load file
         File file = new File("src/Day3/input.txt");
         Scanner scanner = new Scanner(file);
 
+        //assign memory
         int arrayCounter = 0, prioritySum = 0, badgeSum = 0;
         String[] array = {"", "", ""};
 
+        //read file
         while (scanner.hasNextLine()){
             String line = scanner.nextLine();
             array[arrayCounter++ % 3] = line;
@@ -25,6 +28,7 @@ public class Day3 {
         System.out.println(prioritySum);
         System.out.println(badgeSum);
     }
+
     public static int badgeHunter(String[] rucksacks, int badgeSum) {
         for(int i = 0; i < rucksacks[0].length(); i++){
             if(     rucksacks[1].contains(String.valueOf(rucksacks[0].charAt(i)))
@@ -35,6 +39,7 @@ public class Day3 {
         }
         return badgeSum;
     }
+
     public static int occurencyChecker(String firstCompartment, String secondCompartment, int sum){
         for (int i = 0; i < firstCompartment.length(); i++) {
             if(secondCompartment.contains(String.valueOf(firstCompartment.charAt(i)))){
@@ -43,6 +48,7 @@ public class Day3 {
         }
         return sum;
     }
+
     private static int addToSum(char c, int sum) {
         if(c >= 'a' && c <= 'z') return sum + (c - LOWECASE_ASCII);
         if(c >= 'A' && c <= 'Z') return sum + (c - UPPERCASE_ASCII);
