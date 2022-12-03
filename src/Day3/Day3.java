@@ -6,44 +6,47 @@ import java.util.Scanner;
 
 public class Day3 {
     private static final int LOWECASE_ASCII = 'a' - 1;
-    private static final int UPPERCASE_ASCII = 'A' - 38;
-    private static int prioritySum;
+    private static final int UPPERCASE_ASCII = 'A'-1 -26;
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("src/Day3/input.txt");
         Scanner scanner = new Scanner(file);
 
+        int arrayCounter = 0, prioritySum = 0, badgeSum = 0;
+        String[] array = {"", "", ""};
+
         while (scanner.hasNextLine()){
-            String line1 = scanner.nextLine();
-            String compartment1 = line1.substring(0, line1.length()/2);
-            String compartment2 = line1.substring(line1.length()/2);
-            occurencyCecker(compartment1, compartment2);
+            String line = scanner.nextLine();
+            array[arrayCounter++ % 3] = line;
+
+            prioritySum = occurencyChecker(line.substring(0, line.length()/2), line.substring(line.length()/2), prioritySum);
+
+            if(arrayCounter % 3 == 0) badgeSum = badgeHunter(array, badgeSum);
         }
         System.out.println(prioritySum);
-        System.out.println((int) 'A');
-        System.out.println(UPPERCASE_ASCII);
-
-
-
+        System.out.println(badgeSum);
     }
-    public static void occurencyCecker(String firstCompartment, String secondCompartment){
-        for (int i = 0; i < firstCompartment.length(); i++) {
-            if(secondCompartment.contains(String.valueOf(firstCompartment.charAt(i)))){
-                addToSum(firstCompartment, i);
-                break;
+    public static int badgeHunter(String[] rucksacks, int badgeSum) {
+        for(int i = 0; i < rucksacks[0].length(); i++){
+            if(     rucksacks[1].contains(String.valueOf(rucksacks[0].charAt(i)))
+                    && rucksacks[2].contains(String.valueOf(rucksacks[0].charAt(i)))){
+                return addToSum(rucksacks[0].charAt(i), badgeSum);
+
             }
         }
+        return badgeSum;
     }
-
-    private static void addToSum(String firstCompartment, int i) {
-        if (firstCompartment.charAt(i) >= 'a'){
-            prioritySum += firstCompartment.charAt(i) - LOWECASE_ASCII;
-            System.out.println(firstCompartment.charAt(i)+" " +prioritySum);
+    public static int occurencyChecker(String firstCompartment, String secondCompartment, int sum){
+        for (int i = 0; i < firstCompartment.length(); i++) {
+            if(secondCompartment.contains(String.valueOf(firstCompartment.charAt(i)))){
+                return addToSum(firstCompartment.charAt(i), sum);
+            }
         }
-        else{
-            prioritySum += firstCompartment.charAt(i) - UPPERCASE_ASCII;
-            System.out.println(firstCompartment.charAt(i)+" " +prioritySum);
-        }
-
+        return sum;
+    }
+    private static int addToSum(char c, int sum) {
+        if(c >= 'a' && c <= 'z') return sum + (c - LOWECASE_ASCII);
+        if(c >= 'A' && c <= 'Z') return sum + (c - UPPERCASE_ASCII);
+        return sum;
     }
 
 }
