@@ -16,13 +16,9 @@ public class Day4 {
         while(scanner.hasNextLine()){
             String line = scanner.nextLine();
             String[] ranges = line.split(",");
-            for(String range : ranges){
-                System.out.printf(range + "\t");
-            }
-
+            
             boolean b = checkSectionCoverage(ranges);
             if(b) cnt++;
-            System.out.println(b);
 
         }
 
