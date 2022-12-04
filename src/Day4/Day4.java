@@ -1,5 +1,6 @@
 package Day4;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -38,8 +39,8 @@ public class Day4 {
         int min2 = Integer.parseInt(sectionTwo[0]);
         int max2 = Integer.parseInt(sectionTwo[1]);
 
-        return (min1 <= min2  && max1 <= max2) ^
-                (min2 <= min1 && max2 <= max1);
+        return (min1 <= min2 && max1 >= max2) || (min2 <= min1 && max2 >= max1);
+
     }
 }
 
