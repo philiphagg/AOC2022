@@ -16,15 +16,12 @@ public class Day4 {
         while(scanner.hasNextLine()){
             String line = scanner.nextLine();
             String[] ranges = line.split(",");
-            
+
             boolean b = checkSectionCoverage(ranges);
             if(b) cnt++;
 
         }
-
         System.out.println(cnt);
-
-
     }
     public static boolean checkSectionCoverage(String[] ranges) {
         String[] sectionOne = ranges[0].split("-");
