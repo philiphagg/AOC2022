@@ -5,7 +5,7 @@ import java.io.File
 var calorieCounter = 0
 var highestNumber = 0
 fun main() {
-    val filepath: String = "src/Day1/input.txt"
+    val filepath = "src/Day1/input.txt"
     readFileLineByLineUsingForEachLine(filepath)
     println("Highest number: $highestNumber")
 }
