@@ -18,10 +18,10 @@ public class Day4 {
             String line = scanner.nextLine();
             String[] ranges = line.split(",");
 
-            boolean b = checkFullOverlap(ranges);
-            boolean c = checkPartialOverlap(ranges);
-            if(b) fullCoverageOverlap++;
-            if(c) partialOverlap++;
+            boolean isFullCoverageOverlap = checkFullOverlap(ranges);
+            boolean isPartialOverlap = checkPartialOverlap(ranges);
+            if(isFullCoverageOverlap) fullCoverageOverlap++;
+            if(isPartialOverlap) partialOverlap++;
 
         }
         System.out.println(fullCoverageOverlap);
